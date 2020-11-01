@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import "./App.css";
 import Trivia from "./Apprentice_TandemFor400_Data.json";
+import QuestionCard from "./components/QuestionCard"
 
 const TOTAL_QUESTIONS = 10;
 
@@ -72,6 +73,25 @@ const App = () => {
     setLoading(false);
   };
 
+    const checkAnswer = (e) => {
+      if (!gameOver) {
+        //user's answer
+        const answer = e.currentTarget.value;
+        //check answer against correct value
+        const correct = gameQuestions[round].correct === answer;
+        //add score if answer is correct
+        if (correct) setScore((prev) => prev + 1);
+        //save answer in array of user answers
+        const answerObject = {
+          question: gameQuestions[round].question,
+          answer,
+          correct,
+          correctAnswer: gameQuestions[round].correct,
+        };
+        setUserAnswers((prev) => [...prev, answerObject]);
+      }
+    };
+
   const nextQuestion = () => {
     //Move on to the next question (if not the last)
     const nextQuestion = round + 1;
@@ -101,15 +121,15 @@ const App = () => {
       {!gameOver ? <p className="score">Score: {score}</p> : null}
       {loading && <p>Loading questions ...</p>}
       {!loading && !gameOver && (
-        <h1>Hello</h1>
-        // <QuestionCard
-        //   questionNr={round + 1}
-        //   totalQuestions={TOTAL_QUESTIONS}
-        //   question={gameQuestions[round].question}
-        //   answers={gameQuestions[round].choices}
-        //   userAnswer={userAnswers ? userAnswers[round] : undefined}
-        //   callback={checkAnswer}
-        // />
+        // <h1>Hello</h1>
+        <QuestionCard
+          questionNr={round + 1}
+          totalQuestions={TOTAL_QUESTIONS}
+          question={gameQuestions[round].question}
+          answers={gameQuestions[round].choices}
+          userAnswer={userAnswers ? userAnswers[round] : undefined}
+          callback={checkAnswer}
+        />
       )}
       {!gameOver &&
       !loading &&
