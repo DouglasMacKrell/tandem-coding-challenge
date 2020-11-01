@@ -126,7 +126,7 @@ const App = () => {
           questionNr={round + 1}
           totalQuestions={TOTAL_QUESTIONS}
           question={gameQuestions[round].question}
-          answers={gameQuestions[round].choices}
+          choices={gameQuestions[round].choices}
           userAnswer={userAnswers ? userAnswers[round] : undefined}
           callback={checkAnswer}
         />
