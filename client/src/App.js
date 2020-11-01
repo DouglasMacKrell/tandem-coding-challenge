@@ -11,6 +11,7 @@ const App = () => {
 
   const compileTrivia = () => {
     let result = [];
+    let counter = 0
     for (let question of trivia) {
       let questions = question.incorrect;
       let correct = question.correct;
@@ -19,8 +20,10 @@ const App = () => {
         question: question.question,
         choices: questions,
         correct: question.correct,
+        id: counter
       };
       result.push(myObj);
+      counter += 1
     }
     console.log(result);
     setTrivia(result);
@@ -28,22 +31,47 @@ const App = () => {
 
   const selectQuestions = () => {
     let result = []
+    let random = 0
+
+    const getRandom = () => {
+      random = Math.floor(Math.random() * 21)
+    }
+
+    const checkResult = (id) => {
+      let found = false
+      for (let question of result) {
+        if (id === question.id) {
+          found = true
+        }
+      }
+      return found
+    }
 
     for (let i = 0; i < 10; i++) {
-      
+      getRandom()
+      while (checkResult(random)) {
+        getRandom()
+      }
+      result.push(trivia[random])
     }
+    setGameQuestions(result)
   }
 
   useEffect(() => {
     compileTrivia();
   }, []);
 
+  // useEffect(() => {
+  //   selectQuestions()
+  // }, [])
+
   console.log(trivia);
+  console.log(gameQuestions)
   return (
     <div className="App">
       Hello World
       <br />
-      <button>GO</button>
+      <button onClick={selectQuestions}>GO</button>
     </div>
   );
 };
