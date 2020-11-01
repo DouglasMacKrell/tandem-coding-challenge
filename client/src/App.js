@@ -3,15 +3,20 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Trivia from "./Apprentice_TandemFor400_Data.json";
 
+const TOTAL_QUESTIONS = 10;
+
 const App = () => {
   const [trivia, setTrivia] = useState(Trivia);
-  const [gameQuestions, setGameQuestions] = useState([])
+  const [gameQuestions, setGameQuestions] = useState([]);
   const [score, setScore] = useState(0);
+  const [round, setRound] = useState(0);
   const [gameOver, setGameOver] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [userAnswers, setUserAnswers] = useState([]);
 
   const compileTrivia = () => {
     let result = [];
-    let counter = 0
+    let counter = 0;
     for (let question of trivia) {
       let questions = question.incorrect;
       let correct = question.correct;
@@ -20,58 +25,100 @@ const App = () => {
         question: question.question,
         choices: questions,
         correct: question.correct,
-        id: counter
+        id: counter,
       };
       result.push(myObj);
-      counter += 1
+      counter += 1;
     }
     console.log(result);
     setTrivia(result);
   };
 
   const selectQuestions = () => {
-    let result = []
-    let random = 0
+    let result = [];
+    let random = 0;
 
     const getRandom = () => {
-      random = Math.floor(Math.random() * 21)
-    }
+      random = Math.floor(Math.random() * 21);
+    };
 
     const checkResult = (id) => {
-      let found = false
+      let found = false;
       for (let question of result) {
         if (id === question.id) {
-          found = true
+          found = true;
         }
       }
-      return found
-    }
+      return found;
+    };
 
-    for (let i = 0; i < 10; i++) {
-      getRandom()
+    for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+      getRandom();
       while (checkResult(random)) {
-        getRandom()
+        getRandom();
       }
-      result.push(trivia[random])
+      result.push(trivia[random]);
     }
-    setGameQuestions(result)
-  }
+    setGameQuestions(result);
+  };
+
+  const startTrivia = () => {
+    setLoading(true);
+    setGameOver(false);
+    selectQuestions();
+    setScore(0);
+    setUserAnswers([]);
+    setRound(0);
+    setLoading(false);
+  };
+
+  const nextQuestion = () => {
+    //Move on to the next question (if not the last)
+    const nextQuestion = round + 1;
+
+    if (nextQuestion === TOTAL_QUESTIONS) {
+      setGameOver(true);
+    } else {
+      setRound(nextQuestion);
+    }
+  };
 
   useEffect(() => {
     compileTrivia();
   }, []);
 
-  // useEffect(() => {
-  //   selectQuestions()
-  // }, [])
-
   console.log(trivia);
-  console.log(gameQuestions)
+  console.log(gameQuestions);
   return (
     <div className="App">
       Hello World
       <br />
-      <button onClick={selectQuestions}>GO</button>
+      {gameOver || userAnswers.length === 10 ? (
+        <button className="start" onClick={startTrivia}>
+          Start
+        </button>
+      ) : null}
+      {!gameOver ? <p className="score">Score: {score}</p> : null}
+      {loading && <p>Loading questions ...</p>}
+      {!loading && !gameOver && (
+        <h1>Hello</h1>
+        // <QuestionCard
+        //   questionNr={round + 1}
+        //   totalQuestions={TOTAL_QUESTIONS}
+        //   question={gameQuestions[round].question}
+        //   answers={gameQuestions[round].choices}
+        //   userAnswer={userAnswers ? userAnswers[round] : undefined}
+        //   callback={checkAnswer}
+        // />
+      )}
+      {!gameOver &&
+      !loading &&
+      userAnswers.length === round + 1 &&
+      round !== TOTAL_QUESTIONS - 1 ? (
+        <button className="next" onClick={nextQuestion}>
+          Next Question
+        </button>
+      ) : null}
     </div>
   );
 };
