@@ -111,7 +111,7 @@ const App = () => {
   console.log(gameQuestions);
   return (
     <div className="App">
-      Hello World
+      <h1>DOUG'S QUIZ CITY</h1>
       <br />
       {gameOver || userAnswers.length === 10 ? (
         <button className="start" onClick={startTrivia}>
