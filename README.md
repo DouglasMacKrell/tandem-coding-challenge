@@ -6,6 +6,8 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cb6cfa5f-ed54-4027-be01-bced6053229d/deploy-status)](https://app.netlify.com/sites/dougs-quiz-city/deploys)
 
+[![Doug's Quiz City](https://media.giphy.com/media/IoaUtRNzgX6LHCLsuQ/giphy.gif)](https://dougs-quiz-city.netlify.app/)
+
 **Doug's Quiz City** is a simple quiz app designed with a few prerequisites per Tandem:
 
 Assumptions
