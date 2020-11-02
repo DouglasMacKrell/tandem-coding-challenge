@@ -9,7 +9,7 @@ const QuestionCard = ({ questionNr, totalQuestions, question, choices, userAnswe
           Question: {questionNr} / {totalQuestions}
         </p>
         <p dangerouslySetInnerHTML={{ __html: question }} />
-        <div className="multiple-choice-btn">
+        <div className="multi-container">
           {choices.map((choice) => (
             <div
               key={choice}
@@ -20,6 +20,7 @@ const QuestionCard = ({ questionNr, totalQuestions, question, choices, userAnswe
                 disabled={userAnswer ? true : false}
                 value={choice}
                 onClick={callback}
+                className="multiple-choice-btn"
               >
                 <span dangerouslySetInnerHTML={{ __html: choice }} />
               </button>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import "./App.css";
 import Trivia from "./Apprentice_TandemFor400_Data.json";
-import QuestionCard from "./components/QuestionCard"
+import QuestionCard from "./components/QuestionCard";
 
 const TOTAL_QUESTIONS = 10;
 
@@ -35,13 +35,38 @@ const App = () => {
     setTrivia(result);
   };
 
-  const selectQuestions = () => {
+  const getRandom = (limit) => {
+    let random = Math.floor(Math.random() * limit);
+    return random;
+  };
+
+  const randomizeChoices = (arr) => {
     let result = [];
     let random = 0;
 
-    const getRandom = () => {
-      random = Math.floor(Math.random() * 21);
+    const checkResult = (str) => {
+      let found = false;
+      for (let choice of result) {
+        if (choice === str) {
+          found = true;
+        }
+      }
+      return found;
     };
+
+    for (let i = 0; i < arr.length; i++) {
+      let random = getRandom(arr.length);
+      while (checkResult(arr[random])) {
+        random = getRandom(arr.length);
+      }
+      result.push(arr[random])
+    }
+    return result
+  };
+
+  const selectQuestions = () => {
+    let result = [];
+    let random = 0;
 
     const checkResult = (id) => {
       let found = false;
@@ -54,11 +79,14 @@ const App = () => {
     };
 
     for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-      getRandom();
+      random = getRandom(21);
       while (checkResult(random)) {
-        getRandom();
+        random = getRandom(21);
       }
-      result.push(trivia[random]);
+      let selection = trivia[random];
+      selection.choices = randomizeChoices(selection.choices)
+
+      result.push(selection);
     }
     setGameQuestions(result);
   };
@@ -73,24 +101,24 @@ const App = () => {
     setLoading(false);
   };
 
-    const checkAnswer = (e) => {
-      if (!gameOver) {
-        //user's answer
-        const answer = e.currentTarget.value;
-        //check answer against correct value
-        const correct = gameQuestions[round].correct === answer;
-        //add score if answer is correct
-        if (correct) setScore((prev) => prev + 1);
-        //save answer in array of user answers
-        const answerObject = {
-          question: gameQuestions[round].question,
-          answer,
-          correct,
-          correctAnswer: gameQuestions[round].correct,
-        };
-        setUserAnswers((prev) => [...prev, answerObject]);
-      }
-    };
+  const checkAnswer = (e) => {
+    if (!gameOver) {
+      //user's answer
+      const answer = e.currentTarget.value;
+      //check answer against correct value
+      const correct = gameQuestions[round].correct === answer;
+      //add score if answer is correct
+      if (correct) setScore((prev) => prev + 1);
+      //save answer in array of user answers
+      const answerObject = {
+        question: gameQuestions[round].question,
+        answer,
+        correct,
+        correctAnswer: gameQuestions[round].correct,
+      };
+      setUserAnswers((prev) => [...prev, answerObject]);
+    }
+  };
 
   const nextQuestion = () => {
     //Move on to the next question (if not the last)
@@ -121,7 +149,6 @@ const App = () => {
       {!gameOver ? <p className="score">Score: {score}</p> : null}
       {loading && <p>Loading questions ...</p>}
       {!loading && !gameOver && (
-        // <h1>Hello</h1>
         <QuestionCard
           questionNr={round + 1}
           totalQuestions={TOTAL_QUESTIONS}
