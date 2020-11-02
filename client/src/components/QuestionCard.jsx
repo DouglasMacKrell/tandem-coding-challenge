@@ -4,12 +4,12 @@ import './QuestionCard.css'
 
 const QuestionCard = ({ questionNr, totalQuestions, question, choices, userAnswer, callback }) => {
     return (
-      <div>
+      <div className="question-card">
         <p className="number">
           Question: {questionNr} / {totalQuestions}
         </p>
         <p dangerouslySetInnerHTML={{ __html: question }} />
-        <div>
+        <div className="multiple-choice-btn">
           {choices.map((choice) => (
             <div
               key={choice}
