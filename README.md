@@ -63,22 +63,17 @@ You can check for these dependencies with `node -v` from your shell/terminal. If
        git clone https://github.com/DouglasMacKrell/DougTV.git
 ```
 
-2. Install dependencies for the Node/Express Server:
-```
-       npm install
-```
-
-3. Install dependencies for the React App (`client` folder):
+2. Install dependencies for the React App (`client` folder):
 ```
        cd client && npm install
 ```
 
-4. To launch the React App, inside the `client` folder, run:
+3. To launch the React App, inside the `client` folder, run:
 ```
        npm start
 ```
 
-10. A new browser tab should have been opened and the App should be running. If that is not the case check the terminals output for errors, if you are unable to troubleshoot the problem, I would be happy to address issues so open [one](/issues)
+4. A new browser tab should have been opened and the App should be running. If that is not the case check the terminals output for errors, if you are unable to troubleshoot the problem, I would be happy to address issues so open [one](/issues)
 
 ---
 
