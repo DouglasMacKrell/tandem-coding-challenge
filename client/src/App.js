@@ -31,7 +31,6 @@ const App = () => {
       result.push(myObj);
       counter += 1;
     }
-    console.log(result);
     setTrivia(result);
   };
 
@@ -42,7 +41,6 @@ const App = () => {
 
   const randomizeChoices = (arr) => {
     let result = [];
-    let random = 0;
 
     const checkResult = (str) => {
       let found = false;
@@ -103,13 +101,9 @@ const App = () => {
 
   const checkAnswer = (e) => {
     if (!gameOver) {
-      //user's answer
       const answer = e.currentTarget.value;
-      //check answer against correct value
       const correct = gameQuestions[round].correct === answer;
-      //add score if answer is correct
       if (correct) setScore((prev) => prev + 1);
-      //save answer in array of user answers
       const answerObject = {
         question: gameQuestions[round].question,
         answer,
@@ -121,7 +115,6 @@ const App = () => {
   };
 
   const nextQuestion = () => {
-    //Move on to the next question (if not the last)
     const nextQuestion = round + 1;
 
     if (nextQuestion === TOTAL_QUESTIONS) {
@@ -135,8 +128,6 @@ const App = () => {
     compileTrivia();
   }, []);
 
-  console.log(trivia);
-  console.log(gameQuestions);
   return (
     <div className="App">
       <h1>DOUG'S QUIZ CITY</h1>

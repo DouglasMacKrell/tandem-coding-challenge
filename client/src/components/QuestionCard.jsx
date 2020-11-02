@@ -1,19 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import './QuestionCard.css'
 
 const QuestionCard = ({ questionNr, totalQuestions, question, choices, userAnswer, callback }) => {
-    // const [status, setStatus] = useState(null)
-
-    // const changeStatus = (choice) => {
-    //     if (userAnswer) {
-    //         if (userAnswer.correctAnswer === choice) {
-    //             setStatus("correct-answer")
-    //         } else if (userAnswer.correctAnswer !== choice && userAnswer.answer === choice) {
-    //             setStatus
-    //         }
-    //     }
-    // }
 
     return (
       <div className="question-card">
