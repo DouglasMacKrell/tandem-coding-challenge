@@ -10,7 +10,7 @@
 
 Built with React.js with Hooks, and styled with CSS.
 
-![DougTV Site Walkthrough](https://dougtv.herokuapp.com/DougTV.gif)
+[![Douglas MacKrell](https://www.douglasmackrell.com/Doug-Portfolio-Social.png)](https://dougmackrell.com)
 
 ## Features
 
@@ -29,27 +29,23 @@ Users are able to:
 
 * Sitewide Accessability Enhancements: I would love to add the ability to make selections using a keyboard or non-mouse input, and further aids for the visually impaired 
 * The implementation of a back-end server and database to allow users to create simple player accounts, keep track of their history, and monitor a leaderboard of high scores
-* 
+* Adding User Settings that allow a user to alter the number of questions, site styling, or question difficulty
+* Tools for moderators to add or remove questions
+* A form for general users to submit a question for consideration
 
 ## Technical Milestones
 
-* This Full Stack Web App was created as both a tech demo and steppingstone in learning and utilizing WebRTC to launch a one-to-many Video Broadcast
-* Lessons learned in creating DougTV were used in the creation of my award winning Pursuit 2020 Capstone Project, [Pantry Party](https://www.pantry-party.com/)
-* Understanding what the RTCPeerConnection is and how it can be properly shared behind NAT Servers
-* Learning how to collect the ICE credentials from two or more potential connecting peers
-* Disabling audio on the Broadcast's video display so a broadcaster isn't bothered by a echo while presenting
-* Having an accurate active viewer count displayed on the Broadcast page
-* Disabling the _Start Broadcast_ button once a connection has been made and a stream is publicly displayed on the Home Page
+* Parsing the provided json file, and compiling the data
+* Leaving the code adaptable through global variables - for example, the number of questions can be changed by updating a single variable at the top of the App.js file
+* Randomizing both the question bank and their multiple choice answers
+* Targeting changes in CSS styling through ternary feedback after player input
+* Displaying and locking components in the virtual DOM through ternary results
+* The app is fully responsive and works at any screen width
 
 ## Technologies Used
 
-* **Node.js & Express.js** For the HTTP backend server
+* **Node.js** For loading in the required libraries
 * **React.js** For the front-end/client interface of my app
-* **PostgreSQL** As my relation database management system
-* **pg-promise** For interfacing with my database in my backend code
-* **socket.io** For allowing real time real time interactions between two or more peers
-* **WebRTC** The RTCPeerConnection is the data stream shared between peers
-* **STUN Server** A Google provided simple server that shares the ICE credentials (the public facing IP address) to bypass the NAT Server and permit the RTCPeerConnection
 * **CSS3**
 
 ## Local Setup
@@ -60,7 +56,7 @@ You can check for these dependencies with `node -v` from your shell/terminal. If
 
 1. Clone this repo into a folder of your choice:
 ```
-       git clone https://github.com/DouglasMacKrell/DougTV.git
+       git clone https://github.com/DouglasMacKrell/tandem-coding-challenge.git
 ```
 
 2. Install dependencies for the React App (`client` folder):
