@@ -2,7 +2,7 @@
 
 ## A fun quiz app created for Tandem's Apprentice Software Engineer Program!
 
-### Live @ [dougs-quiz-city.netlify.app/](https://dougs-quiz-city.netlify.app/)
+### Live @ [dougs-quiz-city.netlify.app](https://dougs-quiz-city.netlify.app/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cb6cfa5f-ed54-4027-be01-bced6053229d/deploy-status)](https://app.netlify.com/sites/dougs-quiz-city/deploys)
 
