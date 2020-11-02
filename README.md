@@ -6,9 +6,24 @@
 
 [![Heroku](https://heroku-badge.herokuapp.com/?app=dougtv)](https://dougtv.herokuapp.com/)
 
-**Doug's Quiz City** is a One-To-Many Video Broadcast Full-Stack Web App that allows users to quickly launch a live broadcast video stream and be publicly seen and heard by an audience anywhere in the world!
+**Doug's Quiz City** is a simple quiz app designed with a few prerequisites per Tandem:
 
-Built with React.js with Hooks, and styled with CSS.
+Assumptions
+
+* A round of trivia has 10 Questions
+* All questions are multiple-choice questions
+* Your score does not need to update in real time
+* Results can update on form submit, button click, or any interaction you choose
+* We will provide you with the trivia data such as the questions, correct and incorrect answers via a JSON file.
+
+Acceptance Criteria
+
+* A user can view questions.
+* Questions with their multiple choice options must be displayed one at a time. Questions should not repeat in a round.
+* A user can select only 1 answer out of the 4 possible answers.
+* The correct answer must be revealed after a user has submitted their answer A user can see the score they received at the end of the round
+
+The site is built with React.js with Hooks, and styled with CSS.
 
 [![Douglas MacKrell](https://www.douglasmackrell.com/Doug-Portfolio-Social.png)](https://dougmackrell.com)
 
