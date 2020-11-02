@@ -2,9 +2,9 @@
 
 ## A fun quiz app created for Tandem's Apprentice Software Engineer Program!
 
-### Live @ [dougtv.herokuapp.com](https://dougtv.herokuapp.com/)
+### Live @ [dougs-quiz-city.netlify.app/](https://dougs-quiz-city.netlify.app/)
 
-[![Heroku](https://heroku-badge.herokuapp.com/?app=dougtv)](https://dougtv.herokuapp.com/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cb6cfa5f-ed54-4027-be01-bced6053229d/deploy-status)](https://app.netlify.com/sites/dougs-quiz-city/deploys)
 
 **Doug's Quiz City** is a simple quiz app designed with a few prerequisites per Tandem:
 
