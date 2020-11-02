@@ -14,6 +14,7 @@ const App = () => {
   const [gameOver, setGameOver] = useState(true);
   const [loading, setLoading] = useState(false);
   const [userAnswers, setUserAnswers] = useState([]);
+  const [mount, setMount] = useState(false);
 
   const compileTrivia = () => {
     let result = [];
@@ -57,9 +58,9 @@ const App = () => {
       while (checkResult(arr[random])) {
         random = getRandom(arr.length);
       }
-      result.push(arr[random])
+      result.push(arr[random]);
     }
-    return result
+    return result;
   };
 
   const selectQuestions = () => {
@@ -82,7 +83,7 @@ const App = () => {
         random = getRandom(21);
       }
       let selection = trivia[random];
-      selection.choices = randomizeChoices(selection.choices)
+      selection.choices = randomizeChoices(selection.choices);
 
       result.push(selection);
     }
@@ -125,8 +126,12 @@ const App = () => {
   };
 
   useEffect(() => {
-    compileTrivia();
-  }, []);
+    if (!mount) {
+      setMount(true);
+      compileTrivia();
+    }
+    // eslint-disable-next-line
+  }, [trivia]);
 
   return (
     <div className="App">
